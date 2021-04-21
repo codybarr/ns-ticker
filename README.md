@@ -14,7 +14,7 @@ Simple Svelte web component for implementing a countdown timer.
     <title>ns-ticker Demo</title>
   </head>
   <body>
-    <ns-ticker date="2021-04-22T13:00:02"></ns-ticker>
+    <ns-ticker date="2021-04-22T13:00:02" separator=":"></ns-ticker>
 
     <script
       type="module"
@@ -24,6 +24,11 @@ Simple Svelte web component for implementing a countdown timer.
   </body>
 </html>
 ```
+
+**props**
+
+- `date` - must be a valid date, use the format above.
+- `separator` - string to separate the ticker elements by (default is "/")
 
 ## Styling
 
@@ -39,8 +44,20 @@ Apply your styles to the body, eg.:
   </style>
 ```
 
-Here are the css vars that are available now:
+Here are the css vars that have been exposed for customizing:
 
 `--ns-ticker-font-family`
 
-Changes the font family.
+Changes the font family for the entire ticker component.
+
+`--ns-ticker-font-size`
+
+Changes the font size of the countdown numbers and separators.
+
+`--ns-ticker-label-font-size`
+
+Changes the font size of the day/hour/minute/seconds labels.
+
+`--ns-ticker-grid-row-gap` / `--ns-ticker-grid-column-gap`
+
+Changes the gap / spacing between the ticker rows / columns.

@@ -65,6 +65,8 @@
     font-family: var(--ns-ticker-font-family, 'monospace, monospace');
     width: 100%;
     display: grid;
+    grid-row-gap: var(--ns-ticker-grid-row-gap, 1rem);
+    grid-column-gap: var(--ns-ticker-grid-column-gap, 1rem);
     grid-template-columns: 1fr auto 1fr;
     grid-template-rows: 1fr auto 1fr auto;
     grid-template-areas:
@@ -74,28 +76,27 @@
       'minutes-label . seconds-label';
   }
   .tile {
+    font-size: var(--ns-ticker-font-size, 1.875rem);
+    line-height: calc(var(--ns-ticker-font-size, 1.875rem) * 10 / 7);
     align-self: center;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .separator {
+    font-size: var(--ns-ticker-font-size, 1.875rem);
+    line-height: calc(var(--ns-ticker-font-size, 1.875rem) * 10 / 7);
     align-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    line-height: 2rem;
     font-weight: bold;
   }
   .label {
-    margin: 1rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    font-size: var(--ns-ticker-label-font-size, 0.875rem);
+    line-height: calc(var(--ns-ticker-label-font-size, 0.875rem) * 10 / 7);
     display: flex;
     align-items: center;
     justify-content: center;
