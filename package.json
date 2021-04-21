@@ -1,6 +1,6 @@
 {
   "name": "@nosweat/ticker",
-  "main": "dist/index.js",
+  "main": "dist/bundle.js",
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
