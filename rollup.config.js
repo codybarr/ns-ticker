@@ -1,22 +1,23 @@
-import svelte from 'rollup-plugin-svelte';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
-import css from 'rollup-plugin-css-only';
+import svelte from 'rollup-plugin-svelte'
+import copy from 'rollup-plugin-copy'
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import livereload from 'rollup-plugin-livereload'
+import { terser } from 'rollup-plugin-terser'
+import css from 'rollup-plugin-css-only'
 
-const production = !process.env.ROLLUP_WATCH;
+const production = !process.env.ROLLUP_WATCH
 
 function serve() {
-  let server;
+  let server
 
   function toExit() {
-    if (server) server.kill(0);
+    if (server) server.kill(0)
   }
 
   return {
     writeBundle() {
-      if (server) return;
+      if (server) return
       server = require('child_process').spawn(
         'npm',
         ['run', 'start', '--', '--dev'],
@@ -24,12 +25,12 @@ function serve() {
           stdio: ['ignore', 'inherit', 'inherit'],
           shell: true,
         }
-      );
+      )
 
-      process.on('SIGTERM', toExit);
-      process.on('exit', toExit);
+      process.on('SIGTERM', toExit)
+      process.on('exit', toExit)
     },
-  };
+  }
 }
 
 export default {
@@ -62,6 +63,9 @@ export default {
       dedupe: ['svelte'],
     }),
     commonjs(),
+    copy({
+      targets: [{ src: 'public/index.html', dest: 'dist' }],
+    }),
 
     // In dev mode, call `npm run start` once
     // the bundle has been generated
@@ -78,4 +82,4 @@ export default {
   watch: {
     clearScreen: false,
   },
-};
+}

@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content="Starter Snowpack App" />
-		<!-- <link rel="stylesheet" type="text/css" href="/index.css" /> -->
-		<title>Starter Snowpack App</title>
-		<script type="module" src="/dist/index.js"></script>
-	</head>
-	<body>
-		<ns-ticker date="2021-04-21T13:00:02" />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="ns-ticker Demo" />
+    <title>ns-ticker Demo</title>
+
+    <style>
+      body {
+        --ns-ticker-font-family: 'Helvetica';
+      }
+    </style>
+  </head>
+  <body>
+    <ns-ticker date="2024-04-21T13:00:02"></ns-ticker>
+
+    <script async type="module" src="bundle.js"></script>
+  </body>
 </html>
