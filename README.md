@@ -29,6 +29,7 @@ Simple Svelte web component for implementing a countdown timer.
 
 - `date` - must be a valid date, use the format above.
 - `separator` - string to separate the ticker elements by (default is "/")
+- `responsive` - boolean, add if you want responsive styles (otherwise the ticker will always appear on one line)
 
 ## Styling
 

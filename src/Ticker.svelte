@@ -12,6 +12,7 @@
 
   export let date
   export let separator = '/'
+  export let responsive
 
   let time = new Date()
   let valid = isValid(new Date(date))
@@ -37,7 +38,7 @@
   })
 </script>
 
-<section class="ns-ticker">
+<section class="ns-ticker" class:responsive>
   {#if valid}
     <time class="ticker" {datetime}>
       <div class="days tile">{daysAway}</div>
@@ -67,6 +68,13 @@
     display: grid;
     grid-row-gap: var(--ns-ticker-grid-row-gap, 1rem);
     grid-column-gap: var(--ns-ticker-grid-column-gap, 1rem);
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      'days days-separator hours hours-separator minutes minutes-separator seconds'
+      'days-label . hours-label . minutes-label . seconds-label';
+  }
+  .responsive .ticker {
     grid-template-columns: 1fr auto 1fr;
     grid-template-rows: 1fr auto 1fr auto;
     grid-template-areas:
