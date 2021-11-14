@@ -48,8 +48,8 @@
       <div class="minutes tile">{minutesAway}</div>
       <div class="minutes-separator separator">{separator}</div>
       <div class="seconds tile">{secondsAway}</div>
-      <div class="days-label label mb-8">DAYS</div>
-      <div class="hours-label label mb-8">HOURS</div>
+      <div class="mb-8 days-label label">DAYS</div>
+      <div class="mb-8 hours-label label">HOURS</div>
       <div class="minutes-label label">MINUTES</div>
       <div class="seconds-label label">SECONDS</div>
     </time>
@@ -73,15 +73,6 @@
     grid-template-areas:
       'days days-separator hours hours-separator minutes minutes-separator seconds'
       'days-label . hours-label . minutes-label . seconds-label';
-  }
-  .responsive .ticker {
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 1fr auto 1fr auto;
-    grid-template-areas:
-      'days days-separator hours'
-      'days-label . hours-label'
-      'minutes minutes-separator seconds'
-      'minutes-label . seconds-label';
   }
   .tile {
     font-size: var(--ns-ticker-font-size, 1.875rem);
@@ -120,7 +111,7 @@
   }
   .hours-separator {
     grid-area: hours-separator;
-    display: none;
+    display: flex;
   }
   .minutes {
     grid-area: minutes;
@@ -144,17 +135,19 @@
     grid-area: seconds-label;
   }
 
-  @media (min-width: 768px) {
-    .ticker {
-      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
-      grid-template-rows: 1fr auto;
+  @media (max-width: 768px) {
+    .responsive .ticker {
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: 1fr auto 1fr auto;
       grid-template-areas:
-        'days days-separator hours hours-separator minutes minutes-separator seconds'
-        'days-label . hours-label . minutes-label . seconds-label';
+        'days days-separator hours'
+        'days-label . hours-label'
+        'minutes minutes-separator seconds'
+        'minutes-label . seconds-label';
     }
 
-    .hours-separator {
-      display: flex;
+    .responsive .hours-separator {
+      display: none;
     }
   }
 </style>

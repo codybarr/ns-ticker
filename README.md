@@ -14,7 +14,11 @@ Simple Svelte web component for implementing a countdown timer.
     <title>ns-ticker Demo</title>
   </head>
   <body>
-    <ns-ticker date="2021-04-22T13:00:02" separator=":"></ns-ticker>
+    <ns-ticker
+      date="2021-04-22T13:00:02"
+      separator=":"
+      responsive="true"
+    ></ns-ticker>
 
     <script
       type="module"
