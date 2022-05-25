@@ -12,13 +12,22 @@ Simple Svelte web component for implementing a countdown timer.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="ns-ticker Demo" />
     <title>ns-ticker Demo</title>
+    <style>
+      .custom-days {
+        font-size: 2em;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
-    <ns-ticker
-      date="2021-04-22T13:00:02"
-      separator=":"
-      responsive="true"
-    ></ns-ticker>
+    <ns-ticker date="2022-05-24T10:00:02">
+      <ns-show>
+        <span class="custom-days"><ns-days></ns-days></span> :
+        <ns-hours></ns-hours> : <ns-minutes></ns-minutes> :
+        <ns-seconds></ns-seconds>
+      </ns-show>
+      <ns-show done>Congratulations! You made it to the finish line </ns-show>
+    </ns-ticker>
 
     <script
       type="module"
@@ -32,37 +41,41 @@ Simple Svelte web component for implementing a countdown timer.
 **props**
 
 - `date` - must be a valid date, use the format above.
-- `separator` - string to separate the ticker elements by (default is "/")
-- `responsive` - boolean, add if you want responsive styles (otherwise the ticker will always appear on one line)
 
 ## Styling
 
-Since this is a web component it's a little diffult to style, but you can reach into the component using css variables.
+As of version 2.0 `ns-ticker` has been re-written to use headless components.
 
-Apply your styles to the body, eg.:
+So you can compose a few different components and style the library as you see fit with your own markup.
 
+### `<ns-ticker>`
+
+Everything needs to be wrapped in a `<ns-ticker>` element. This provides information to each sub-component from the global store.
+
+### `<ns-show>`
+
+Wrap the content you want to show (before the expire time) in an `<ns-show>` element.
+
+Add the `done` prop to to only show the children of `<ns-show>` when the countdown has expired. Eg:
+
+```html
+<ns-show done>
+  <p>The countdown has expired</p>
+</ns-show>
 ```
-  <style>
-    body {
-      --ns-ticker-font-family: 'Helvetica';
-    }
-  </style>
-```
 
-Here are the css vars that have been exposed for customizing:
+### `<ns-days>`
 
-`--ns-ticker-font-family`
+`<ns-days>` is a simple component that displays the number of days remaining.
 
-Changes the font family for the entire ticker component.
+### `<ns-hours>`
 
-`--ns-ticker-font-size`
+`<ns-hours>` is a simple component that displays the number of hours remaining.
 
-Changes the font size of the countdown numbers and separators.
+### `<ns-minutes>`
 
-`--ns-ticker-label-font-size`
+`<ns-minutes>` is a simple component that displays the number of minutes remaining.
 
-Changes the font size of the day/hour/minute/seconds labels.
+### `<ns-seconds>`
 
-`--ns-ticker-grid-row-gap` / `--ns-ticker-grid-column-gap`
-
-Changes the gap / spacing between the ticker rows / columns.
+`<ns-seconds>` is a simple component that displays the number of seconds remaining.
