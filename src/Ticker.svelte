@@ -3,7 +3,6 @@
 <script>
   import { onMount } from 'svelte'
   import { isValid, differenceInSeconds } from 'date-fns'
-  import { days, hours, minutes, seconds, finished } from './store'
 
   const SECONDS_IN_DAY = 86400 // 60 * 60 * 24
   const SECONDS_IN_HOUR = 3600 // 60 * 60
@@ -13,28 +12,22 @@
 
   export let date
   export let separator = '/'
+  export let responsive
 
   let time = new Date()
   let valid = isValid(new Date(date))
-  let difference
 
   $: difference = differenceInSeconds(new Date(date), time)
-  $: expired = difference <= 0
+  $: finished = difference <= 0
+
+  // these automatically update when `now`
+  // changes, because of the `$:` prefix
   $: daysAway = maxFloorPad(difference / SECONDS_IN_DAY)
   $: hoursAway = maxFloorPad((difference % SECONDS_IN_DAY) / SECONDS_IN_HOUR)
   $: minutesAway = maxFloorPad((difference % SECONDS_IN_HOUR) / 60)
   $: secondsAway = maxFloorPad(difference % 60)
 
   $: datetime = `P${daysAway}DT${hoursAway}H${minutesAway}M${secondsAway}S`
-
-  $: days.set(daysAway)
-  $: hours.set(hoursAway)
-  $: minutes.set(minutesAway)
-  $: seconds.set(secondsAway)
-  $: finished.set(expired)
-
-  // $: console.log({ date, valid, time, difference, daysAway })
-  // days.subscribe((value) => console.log(value))
 
   onMount(() => {
     const interval = setInterval(() => {
@@ -45,7 +38,7 @@
   })
 </script>
 
-<!-- <section class="ns-ticker" class:responsive>
+<section class="ns-ticker" class:responsive>
   {#if valid}
     <time class="ticker" {datetime}>
       <div class="days tile">{daysAway}</div>
@@ -66,10 +59,6 @@
       "2021-04-20T15:39:00."
     </p>
   {/if}
-</section> -->
-
-<section class="ns-ticker">
-  <slot />
 </section>
 
 <style global lang="postcss">

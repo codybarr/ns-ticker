@@ -1,9 +1,4 @@
 import Ticker from './Ticker.svelte'
-import Days from './Days.svelte'
-import Hours from './Hours.svelte'
-import Minutes from './Minutes.svelte'
-import Seconds from './Seconds.svelte'
-import Show from './Show.svelte'
 // import 'tailwindcss/dist/tailwind.css'
 
 // let app = new Ticker({
@@ -13,4 +8,4 @@ import Show from './Show.svelte'
 // 	},
 // })
 
-export { Ticker, Days, Hours, Minutes, Seconds, Show }
+export default Ticker
